@@ -1,0 +1,95 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family:sans-serif, Helvetica, arial;
+
+}
+
+.herov{
+  height: auto;
+  width: 100%;
+  background: white;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(images/background.jpg);
+}
+
+
+.header a {
+  float: left;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #87adfe , #ff77cd );
+  box-shadow: 3px 8px 22px rgba(392, 228, 68, 0.15);
+  border-radius: 25px;
+}
+
+.header a:hover {
+  background-color: blueviolet;
+  color: black;
+  border-radius: 15px;
+}
+
+.header a.active {
+  box-shadow: 3px 8px 22px rgba(392, 228, 68, 0.15);
+  background: linear-gradient(45deg, #87adfe , #ff77cd );
+  color: white;
+  border-radius: 15px;
+}
+
+.header-right {
+  float: right;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+  background: black;
+}
+
+
+
+#tbe
+{
+	padding: 10px;
+}
+
+td{
+  padding: 20px;
+  text-align: center;
+}
+
+input{
+  text-align: center;
+  width: 50%;
+}
+
+button{
+  padding: 10px 10px;
+  cursor: pointer;
+  display: block;
+  margin: 25% auto;
+  background: linear-gradient(45deg, #87adfe , #ff77cd );
+  border:  0;
+  outline: none;
+  border-radius: 30px;
+}
+
+.center{
+  margin-right: auto;
+  margin-left: auto;
+  
+}
