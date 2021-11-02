@@ -1,0 +1,236 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family:sans-serif, Helvetica, arial;
+
+}
+.header a {
+  float: left;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #87adfe , #ff77cd );
+  box-shadow: 3px 8px 22px rgba(392, 228, 68, 0.15);
+  border-radius: 25px;
+}
+
+.header a:hover {
+  background-color: blueviolet;
+  color: black;
+  border-radius: 15px;
+}
+
+.header a.active {
+  box-shadow: 3px 8px 22px rgba(392, 228, 68, 0.15);
+  background: linear-gradient(45deg, #87adfe , #ff77cd );
+  color: white;
+  border-radius: 15px;
+}
+
+.header-right {
+  float: right;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+  background: black;
+}
+
+
+[class*="col-"] {
+    width: 100%;
+
+  }
+
+h3{
+	text-align: left;
+	color: black;
+}
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-s-1 {width: 8.33%;}
+    .col-s-2 {width: 16.66%;}
+    .col-s-3 {width: 25%;}
+    .col-s-4 {width: 33.33%;}
+    .col-s-5 {width: 41.66%;}
+    .col-s-6 {width: 50%;}
+    .col-s-7 {width: 58.33%;}
+    .col-s-8 {width: 66.66%;}
+    .col-s-9 {width: 75%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100%;}
+
+  }
+  @media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+    .footer {width: 100%;}
+    .footer {position: absolute;}
+  }
+
+  table, th {
+
+  text-align: left;
+}
+
+
+table{
+	width: 100%;
+	padding: 10px;
+
+	height: auto;
+}
+table.menu{
+	width: auto;
+    float: right;
+
+}
+th tr {
+	overflow: hidden; 
+    text-overflow: ellipsis; 
+    word-wrap: break-word;
+}
+
+
+.herox{
+	height: 100%;
+	width: 100%;
+	background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(images/background.jpg);
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+	display:flex;
+	justify-content: center;
+}
+
+.herov{
+	height: auto;
+	width: 100%;
+	background: white;
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+	background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(images/background.jpg);
+}
+
+
+
+h2{ text-align: center;
+}
+
+h4{
+	padding: 5px 5px;
+}
+.form-box{
+	height: 40%;
+	position: relative;
+	margin: 6% auto;
+	background: white;
+	padding: 15px;
+	overflow: hidden;
+	margin-top: 150px;
+	border-radius: 10px;
+
+}
+
+
+.buttonx{
+	text-align: center;
+}
+
+img {
+	width: 33%;
+	cursor: pointer;
+	border-radius: 20px;
+	padding: 15x 25px;
+	box-sizing: border-box;
+	color: #fff;
+	box-shadow: 3px 8px 22px rgba(392, 228, 68, 0.15);
+
+}
+
+
+
+.input-field{
+	padding: 10px 0;
+	margin: 5px 0;
+	border-left: 0;
+	border-top: 0;
+	border-right: 0;
+	border-bottom: 1px solid #999;
+	outline: none;
+	background: transparent;
+}
+
+.submit-btn{
+	padding: 10px 10px;
+	cursor: pointer;
+	display: block;
+	margin: 25% auto;
+	background: linear-gradient(45deg, #87adfe , #ff77cd );
+	border:  0;
+	outline: none;
+	border-radius: 30px;
+}
+
+
+.forgotpass{
+	color: #777;
+	font-size: 11px;
+	text-align: right;
+	text-decoration: none;
+}
+
+.form1{
+	width: 33%;
+	text-align: left;
+	position: relative;
+	border-radius: 20px;
+	padding: 15x 25px;
+	box-sizing: border-box;
+	color: black;
+	box-shadow: 3px 8px 22px rgba(392, 228, 68, 0.15);
+	background: transparent;
+	height: 50%;
+
+}
+
+.form2{
+	left: 34%;
+	bottom: 320px;
+	width: 25%;
+	text-align: left;
+	position: relative;
+	border-radius: 20px;
+	padding: 15x 25px;
+	box-sizing: border-box;
+	color: blac;
+	box-shadow: 3px 8px 22px rgba(392, 228, 68, 0.15);
+	background: ff
+	height: 30%;
+	
+}
