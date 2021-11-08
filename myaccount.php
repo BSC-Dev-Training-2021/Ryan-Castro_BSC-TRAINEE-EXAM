@@ -1,16 +1,51 @@
 <?php
+$dbhost = "localhost";
+$dbuser = "user";
+$dbpass = "pass";
+$db = "sampledatabase";
+$conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
+
+$query = "SELECT * FROM productlist where Status = 'Ordered' ";
+
+if (isset($_POST["shipbt"])) {
+if ($result = $conn->query($query)) {
+    while ($row = $result->fetch_assoc()) {
+        $field1name = $row["ID"];
+        $sql = "UPDATE productlist SET Status='Shipping' WHERE id=".$field1name.";";
+     if ($conn->query($sql) === TRUE) {
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+    }
+   
+        
+  
+        $ok = "Shipping Success!";
+        $conn->close();
+        echo "<script> alert('$ok');
+        window.location.href='myaccount.php';</script>";
+    
+   
+
+$result->free();
+}
+}
+$total = 0;
+
 
 ?>
+
 <head>
     <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/checkoutstyle.css">
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <div class="header">
         <a href="" class="logo">Fasion Geek</a>
         <div class="header-right">
-          <a href="">Home</a>
-          <a class="active" href="">MyAccount</a>
-          <a href="">Logout</a>
+          <a href="orderlist.php">Home</a>
+          <a class="" href="selectorder.php">Shop</a>
+          <a class="active" href="myaccount.php">MyAccount</a>
+          <a href="index.php">Logout</a>
           <img class="imglogo" src="images/mypicturelogo.jpg">
        </div>
     </div>
@@ -25,51 +60,51 @@
                     <div class="col">
                         <h4><b>My Cart</b></h4>
                     </div>
-                    <div class="col align-self-center text-right text-muted">3 items</div>
+                    <div class="col align-self-center text-right text-muted">Shipping List</div>
+                    <div class="col align-self-center text-right text-muted"></div>
                 </div>
             </div>
-            <div class="row border-top border-bottom">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="images/blackt.jfif"></div>
-                    <div class="col">
-                        <div class="row text-muted">Shirt</div>
-                        <div class="row">Black T-shirt</div>
-                        <div class="row text-muted">11/05/2021</div>
-                    </div>
+            <?php
+                if ($result = $conn->query($query)) {
+
+                    while ($row = $result->fetch_assoc()) {
+                        $name = $row["ProductName"];
+                        $desc = $row["Descriptions"];
+                        $price = $row["Price"];
+                        $totalprice = $row["TotalPrice"];
+                        $image = $row["Images"];
+                        $quant = $row["Quantity"];
+                        
                     
-                    <div class="col"> <input type="number" class="input-auto text-center border" value="1" name="blackshirt" readonly> </div>
-                    <div class="col">P 100.00 <a href=""><span class="close">Remove</span></a></div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="images/bluet.jfif"></div>
-                    <div class="col">
-                        <div class="row text-muted">Shirt</div>
-                        <div class="row">Blue T-shirt</div>
-                        <div class="row text-muted">11/05/2021</div>
-                    </div>
-                    <div class="col">  <input type="number" class="input-auto text-center border" value="1" id="blueshirt" readonly> </div>
-                    <div class="col">P 100.00 <a href=""><span class="close">Remove</span></a></div>
-                </div>
-            </div>
+                        $total = $total + $totalprice;
+                         
+                        ECHO  "<div class='row border-top border-bottom'>";
+                            ECHO  "<div class='row main align-items-center'>";
+                                ECHO  "<div class='col-2'><img class='img-fluid' src='images/".$image."'></div>";
+                                    ECHO  "<div class='col'>";
+                                        ECHO  " <div class='row text-muted'>" . $desc . "</div>";
+                                        ECHO  "<div class='row'>". $name ."</div>";
+                                        ECHO  "<div class='row text-muted'>11/05/2021</div>";
+                                ECHO "</div>";
+                                        ECHO  "<div class='col'> <input type='number' class='input-auto text-center border' value='". $quant ."' name='blackshirt' readonly> </div>";
+                                        ECHO  "<div class='col'>P ". $price ."<br>P ".$totalprice.".00 <a href=''><span class='close'>Remove</span></a></div>";
+                            ECHO  "</div>";
+                        ECHO "</div>"; 
+                    }
+                 
+                 /*freeresultset*/
+                 $result->free();
+                 }
+            ?>
 
-            <div class="row border-top border-bottom">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="images/redt.jfif"></div>
-                    <div class="col">
-                        <div class="row text-muted">Shirt</div>
-                        <div class="row">Red T-shirt</div>
-                        <div class="row text-muted">11/05/2021</div>
-                    </div>
-                    <div class="col"> <input type="number" class="input-auto text-center border" value="1" name="redshirt" readonly> </div>
-                    <div class="col">P 100.00 <a href=""><span class="close">Remove</span></a></div>
-                </div>
-            </div>
+            
 
-            <div class="back-to-shop "><a class="backarrow" href="#">&leftarrow;<span class="text-muted">Get More Items</span></a></div>
+            <div class="back-to-shop "><a class="backarrow" href="selectorder.php">&leftarrow;<span class="text-muted">Order Item Here</span></a></div>
+            
         </div>
+
+
         <div class="col-md-4 summary">
             <div class="profile" align="center">
                 <img src="images/mypicture.jpg">
@@ -96,11 +131,15 @@
                 <div class="col text-left">11/05/2021</div>
             </div>	
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col">Total Price&rightarrow;</div>
-                <div class="col text-right">P 300.00</div>
+                <div class="col">Shipping Fee</div>
+                <div class="col text-right">P 50.00</div>
             </div> 
-            <form action="#" method="post">
-            <a><button name="submit-btn" class="btn">SHIP NOW</button></a>
+            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="col">Total Price&rightarrow;</div>
+                <div class="col text-right">P <?php echo $total+50; ?>.00</div>
+            </div> 
+            <form action="" method="post">
+            <a><button name="shipbt" class="btn">SHIP NOW</button></a>
             </form>
         </div>
     </div>
