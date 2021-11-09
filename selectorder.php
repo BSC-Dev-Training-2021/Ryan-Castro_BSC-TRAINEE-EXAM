@@ -254,7 +254,7 @@ if (isset($_POST["checkoutbt"])) {
                 <div class="col">
                     <form class="align-items-left" action="" method="post">
                         <input type="number" name="resetme" value="1" hidden readonly>
-                        <input class="reset-btn" type="submit" value="Reset">
+                        <input class="btn" type="submit" value="Reset">
                     </form>
                 </div>
 
@@ -331,7 +331,7 @@ if (isset($_POST["checkoutbt"])) {
                         }                 
                     ?>
                 </div>
-            </div> <form action="" method="post"> <button name="checkoutbt" class="btn">CHECKOUT</button></form>
+            </div> <form action="" method="post"> <button name="checkoutbt" class="btn">PRE-ORDER</button></form>
            
         </div>
     </div>

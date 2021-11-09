@@ -8,6 +8,15 @@ $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n".
 $query = "SELECT * FROM productlist where Status = 'Shipping' ";
 
 $total = 0;
+
+$idarray[] = 0;
+
+if (isset($_POST["removesubmit[]"])) {
+    echo $_POST["remove[]"];
+}
+
+
+
 ?>
 <head>
     <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
@@ -29,7 +38,6 @@ $total = 0;
     </div>
 </head>
 <body>
-    
 
 <div class="card">
     
@@ -38,13 +46,12 @@ $total = 0;
             <div class="title">
                 <div class="row">
                     <div class="col">
-                        <h4><b>Checkout</b></h4>
+                        <h4><b>Shipping List</b></h4>
                     </div>
-                    <div class="col align-self-center text-right text-muted">3 items</div>
+                    <div class="col align-self-center text-right text-muted">Quantity</div>
                 </div>
             </div>
-            
-
+        
             <?php
                 if ($result = $conn->query($query)) {
 
@@ -56,8 +63,11 @@ $total = 0;
                         $image = $row["Images"];
                         $quant = $row["Quantity"];
                         
-                    
-
+                        $adding = 1;
+                        $idarray[$adding] = $row["ID"];
+                        echo $idarray[$adding];
+                        
+                        
                         $total = $total + $totalprice;
                          
                         ECHO  "<div class='row border-top border-bottom'>";
@@ -69,9 +79,10 @@ $total = 0;
                                         ECHO  "<div class='row text-muted'>11/05/2021</div>";
                                 ECHO "</div>";
                                         ECHO  "<div class='col'> <input type='number' class='input-auto text-center border' value='". $quant ."' name='blackshirt' readonly> </div>";
-                                        ECHO  "<div class='col'>P ". $price ."<br>P ".$totalprice.".00 <a href=''><span class='close'>Remove</span></a></div>";
+                                        ECHO  "<div class='col'>P ". $price ."<br>P ".$totalprice.".00 <a href='removing.php?id=". $idarray[$adding] ."'><span class='close'>Remove</span></a></div>";      
                             ECHO  "</div>";
                         ECHO "</div>"; 
+                        $adding++;
                     }
                  
                  /*freeresultset*/
@@ -79,42 +90,10 @@ $total = 0;
                  }
             ?>
 
-            <div class="row border-top border-bottom">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="images/redt.jfif"></div>
-                    <div class="col">
-                        <div class="row text-muted">Shirt</div>
-                        <div class="row">Red T-shirt</div>
-                        <div class="row text-muted">11/05/2021</div>
-                    </div>
-                    <div class="col"> <input type="number" class="input-auto text-center border" value="1" > </div>
-                    <div class="col">P 100.00 <a href=""><span class="close">Remove</span></a></div>
-                </div>
-            </div>
-
             <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
         </div>
         <div class="col-md-4 summary">
-            <div>
-                <h5><b>Summary</b></h5>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col" style="padding-left:0;">&rightarrow;ITEMS 3</div>
-                <div class="col text-right">P 300.00</div>
-            </div>
-            <form>
-                <p>SHIPPING</p> 
-                <select>
-                    <option class="text-muted">Cash on Delivery - P 300.00</option>
-                    <option class="text-muted">Credit Card - P 300.00</option>
-                </select>
-                <p><br>Shipping Fee</p> <input value="P 50.00" readonly>
-            </form>
-            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col">TOTAL PRICE</div>
-                <div class="col text-right">P 300.00</div>
-            </div> <button class="btn">CHECKOUT</button>
+            
         </div>
     </div>
 </div>

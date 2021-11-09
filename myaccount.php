@@ -17,22 +17,15 @@ if ($result = $conn->query($query)) {
         echo "Error: " . $sql . "<br>" . $conn->error;
       }
     }
-   
-        
-  
         $ok = "Shipping Success!";
         $conn->close();
         echo "<script> alert('$ok');
-        window.location.href='myaccount.php';</script>";
-    
-   
-
+        window.location.href='myaccount.php';</script>";  
 $result->free();
 }
 }
 $total = 0;
-
-
+$idarray[] = 0;
 ?>
 
 <head>
@@ -60,7 +53,7 @@ $total = 0;
                     <div class="col">
                         <h4><b>My Cart</b></h4>
                     </div>
-                    <div class="col align-self-center text-right text-muted">Shipping List</div>
+                    <div class="col align-self-center text-right text-muted">Pre-Order List</div>
                     <div class="col align-self-center text-right text-muted"></div>
                 </div>
             </div>
@@ -74,9 +67,11 @@ $total = 0;
                         $totalprice = $row["TotalPrice"];
                         $image = $row["Images"];
                         $quant = $row["Quantity"];
-                        
-                    
 
+                        $adding = 1; 
+                        $idarray[$adding] = $row["ID"];
+                        echo $idarray[$adding];
+                        
                         $total = $total + $totalprice;
                          
                         ECHO  "<div class='row border-top border-bottom'>";
@@ -88,7 +83,7 @@ $total = 0;
                                         ECHO  "<div class='row text-muted'>11/05/2021</div>";
                                 ECHO "</div>";
                                         ECHO  "<div class='col'> <input type='number' class='input-auto text-center border' value='". $quant ."' name='blackshirt' readonly> </div>";
-                                        ECHO  "<div class='col'>P ". $price ."<br>P ".$totalprice.".00 <a href=''><span class='close'>Remove</span></a></div>";
+                                        ECHO  "<div class='col'>P ". $price ."<br>P ".$totalprice.".00 <a href='remove2.php?id=". $idarray[$adding] ."'><span class='close'>Remove</span></a></div>";
                             ECHO  "</div>";
                         ECHO "</div>"; 
                     }
@@ -97,8 +92,6 @@ $total = 0;
                  $result->free();
                  }
             ?>
-
-            
 
             <div class="back-to-shop "><a class="backarrow" href="selectorder.php">&leftarrow;<span class="text-muted">Order Item Here</span></a></div>
             
@@ -138,7 +131,7 @@ $total = 0;
                 <div class="col">Total Price&rightarrow;</div>
                 <div class="col text-right">P <?php echo $total+50; ?>.00</div>
             </div> 
-            <form action="" method="post">
+            <form action="orderlist.php" method="post">
             <a><button name="shipbt" class="btn">SHIP NOW</button></a>
             </form>
         </div>
