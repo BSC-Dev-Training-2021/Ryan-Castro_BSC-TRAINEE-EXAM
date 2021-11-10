@@ -1,21 +1,11 @@
 <?php
-$dbhost = "localhost";
-$dbuser = "user";
-$dbpass = "pass";
-$db = "sampledatabase";
-$conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
+include 'control/include.php';
 
 $query = "SELECT * FROM productlist where Status = 'Shipping' ";
 
 $total = 0;
 
 $idarray[] = 0;
-
-if (isset($_POST["removesubmit[]"])) {
-    echo $_POST["remove[]"];
-}
-
-
 
 ?>
 <head>

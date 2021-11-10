@@ -1,28 +1,25 @@
 <?php
-$dbhost = "localhost";
-$dbuser = "user";
-$dbpass = "pass";
-$db = "sampledatabase";
-$conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
+
+include 'control/include.php';
 
 $query = "SELECT * FROM productlist where Status = 'Ordered' ";
 
 if (isset($_POST["shipbt"])) {
-if ($result = $conn->query($query)) {
-    while ($row = $result->fetch_assoc()) {
-        $field1name = $row["ID"];
-        $sql = "UPDATE productlist SET Status='Shipping' WHERE id=".$field1name.";";
-     if ($conn->query($sql) === TRUE) {
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-    }
+    if ($result = $conn->query($query)) {
+        while ($row = $result->fetch_assoc()) {
+            $field1name = $row["ID"];
+            $sql = "UPDATE productlist SET Status='Shipping' WHERE id=".$field1name.";";
+        if ($conn->query($sql) === TRUE) {
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        }
         $ok = "Shipping Success!";
         $conn->close();
         echo "<script> alert('$ok');
         window.location.href='myaccount.php';</script>";  
-$result->free();
-}
+        $result->free();
+    }
 }
 $total = 0;
 $idarray[] = 0;
@@ -70,7 +67,6 @@ $idarray[] = 0;
 
                         $adding = 1; 
                         $idarray[$adding] = $row["ID"];
-                        echo $idarray[$adding];
                         
                         $total = $total + $totalprice;
                          
@@ -86,8 +82,7 @@ $idarray[] = 0;
                                         ECHO  "<div class='col'>P ". $price ."<br>P ".$totalprice.".00 <a href='remove2.php?id=". $idarray[$adding] ."'><span class='close'>Remove</span></a></div>";
                             ECHO  "</div>";
                         ECHO "</div>"; 
-                    }
-                 
+                    }               
                  /*freeresultset*/
                  $result->free();
                  }

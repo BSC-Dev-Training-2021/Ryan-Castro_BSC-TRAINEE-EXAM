@@ -106,11 +106,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 if (isset($_POST["checkoutbt"])) {
     
-    $dbhost = "localhost";
-    $dbuser = "user";
-    $dbpass = "pass";
-    $db = "sampledatabase";
-    $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
+    include 'control/include.php';
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -144,18 +140,18 @@ if (isset($_POST["checkoutbt"])) {
               echo "Error: " . $sql . "<br>" . $conn->error;
             }
         }
-          if ($_SESSION['bluetshirt'] > 0){
+        if ($_SESSION['bluetshirt'] > 0){
             $ftotalprice = $_SESSION['totalitem3'];
             $fquantity =  $_SESSION['bluetshirt'];
             $fprice = 110;
 
             $sql = "INSERT INTO productlist (ID, ProductName, Descriptions, Price, Quantity, TotalPrice, Images, Status)
             VALUES (null , 'Blue T-Shirt', 'Shirt - 100% Cotton' , '$fprice' , '$fquantity' , '$ftotalprice' , 'bluet.jfif' , 'Ordered')";
-         if ($conn->query($sql) === TRUE) {
-           
-          } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-          }
+            if ($conn->query($sql) === TRUE) {
+            
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
             
             
          }
@@ -309,10 +305,8 @@ if (isset($_POST["checkoutbt"])) {
                     if ($_SESSION['redt'] > 0){
                         echo "  ". "P ".$_SESSION['totalitem2'].".00";
                     }
-                 ?>
-               
-            </div>
-
+                 ?>            
+                </div>
             </div>
 
             <form>
